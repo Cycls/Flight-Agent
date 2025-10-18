@@ -31,3 +31,4 @@ cd flight-agent
 # Example: echo "OPENAI_API_KEY=sk-..." > .env
 # Required keys: CYCLS_API_KEY, OPENAI_API_KEY, DUFFEL_API_KEY
 ```
+## Make the AI you love, Cycls does the rest.
