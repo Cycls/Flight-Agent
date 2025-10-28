@@ -5,6 +5,7 @@ import urllib.parse
 from openai import OpenAI
 import dotenv
 from datetime import datetime, timedelta
+from ui import header, intro
 
 dotenv.load_dotenv()
 CYCLS_API_KEY = os.getenv("CYCLS_API_KEY")
@@ -35,7 +36,7 @@ def search_flights(origin: str, destination: str, departure_date: str, passenger
     flights_data = [{"offer_id": offer.get("id", ""), "airline": offer["owner"]["name"], "price": f"{offer['total_amount']} {offer['total_currency']}", "duration": offer["slices"][0]["duration"], "stops": len(offer["slices"][0].get("segments", [{}])) - 1, "departure": offer["slices"][0]["segments"][0].get("departing_at", "N/A").split("T")[1][:5] if "T" in offer["slices"][0]["segments"][0].get("departing_at", "") else "N/A", "arrival": offer["slices"][0]["segments"][-1].get("arriving_at", "N/A").split("T")[1][:5] if "T" in offer["slices"][0]["segments"][-1].get("arriving_at", "") else "N/A"} for offer in offers]
     
     return {"success": True, "flights": flights_data, "origin": origin, "destination": destination}
-@agent()
+@agent(header=header, intro=intro)
 async def flight_agent(context):
     import os
     from openai import OpenAI
@@ -96,3 +97,4 @@ Your job is to help users find and book flights.
     return response_msg.content or "Hello! I'm your flight booking assistant. Where would you like to fly today?"
     
 agent.cycls(prod=True)
+
