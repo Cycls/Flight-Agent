@@ -2,7 +2,7 @@
 
 An AI-powered assistant to find and book flights with ease, presenting real-time options in a rich, interactive format.
 
-**Live Demo:** `https://flight-agent-280879789566.me-central1.run.app`
+**Live Demo:** `https://flight-agent.cycls.ai/`
 
 ---
 
