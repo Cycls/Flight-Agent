@@ -1,4 +1,4 @@
-import urllib.parse  # <--- 1. Add this import
+import urllib.parse  
 
 header = """
 <div class="fixed top-0 left-0 right-0 -z-40 h-[35vh] bg-cover bg-center bg-no-repeat" 
@@ -29,7 +29,7 @@ header = """
 </div>
 """
 
-# <--- 2. Changed to f-string (f""") and used urllib.parse.quote inside {}
+
 intro = f"""
 ---
 
