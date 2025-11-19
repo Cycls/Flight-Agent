@@ -1,3 +1,4 @@
+import urllib.parse  # <--- 1. Add this import
 
 header = """
 <div class="fixed top-0 left-0 right-0 -z-40 h-[35vh] bg-cover bg-center bg-no-repeat" 
@@ -28,24 +29,24 @@ header = """
 </div>
 """
 
-intro = """
+# <--- 2. Changed to f-string (f""") and used urllib.parse.quote inside {}
+intro = f"""
 ---
 
 <div class="py-1">
   <div class="flex flex-wrap gap-3 justify-center">
-    <a href="https://cycls.com/send/${encodeURIComponent('Search flights from NYC to London tomorrow')}" class="group relative inline-flex items-center justify-center px-4 py-2 overflow-hidden font-medium text-gray-700 border-2 border-gray-300 rounded-xl shadow-lg bg-gradient-to-br from-gray-50 to-white focus:outline-none hover:border-gray-400 hover:shadow-xl transition-all whitespace-nowrap text-sm">
-      <span>Search flights from NYC to London tomorrow</span>
+    <a href="https://cycls.com/send/{urllib.parse.quote('Search flights from NYC to London tomorrow')}" class="group relative inline-flex items-center justify-center px-4 py-2 overflow-hidden font-medium text-gray-700 border-2 border-gray-300 rounded-xl shadow-lg bg-gradient-to-br from-gray-50 to-white focus:outline-none hover:border-gray-400 hover:shadow-xl transition-all whitespace-nowrap text-sm">
+      Search flights from NYC to London tomorrow
     </a>
-    <a href="https://cycls.com/send/${encodeURIComponent('Buscar vuelos de Madrid a Barcelona')}" class="group relative inline-flex items-center justify-center px-4 py-2 overflow-hidden font-medium text-gray-700 border-2 border-gray-300 rounded-xl shadow-lg bg-gradient-to-br from-gray-50 to-white focus:outline-none hover:border-gray-400 hover:shadow-xl transition-all whitespace-nowrap text-sm">
-      <span>Buscar vuelos de Madrid a Barcelona</span>
+    <a href="https://cycls.com/send/{urllib.parse.quote('Buscar vuelos de Madrid a Barcelona')}" class="group relative inline-flex items-center justify-center px-4 py-2 overflow-hidden font-medium text-gray-700 border-2 border-gray-300 rounded-xl shadow-lg bg-gradient-to-br from-gray-50 to-white focus:outline-none hover:border-gray-400 hover:shadow-xl transition-all whitespace-nowrap text-sm">
+      Buscar vuelos de Madrid a Barcelona
     </a>
-    <a href="https://cycls.com/send/${encodeURIComponent('Rechercher des vols Paris Rome')}" class="group relative inline-flex items-center justify-center px-4 py-2 overflow-hidden font-medium text-gray-700 border-2 border-gray-300 rounded-xl shadow-lg bg-gradient-to-br from-gray-50 to-white focus:outline-none hover:border-gray-400 hover:shadow-xl transition-all whitespace-nowrap text-sm">
-      <span>Rechercher des vols Paris Rome</span>
+    <a href="https://cycls.com/send/{urllib.parse.quote('Rechercher des vols Paris Rome')}" class="group relative inline-flex items-center justify-center px-4 py-2 overflow-hidden font-medium text-gray-700 border-2 border-gray-300 rounded-xl shadow-lg bg-gradient-to-br from-gray-50 to-white focus:outline-none hover:border-gray-400 hover:shadow-xl transition-all whitespace-nowrap text-sm">
+      Rechercher des vols Paris Rome
     </a>
-    <a href="https://cycls.com/send/${encodeURIComponent('東京からシンガポールへのフライトを検索')}" class="group relative inline-flex items-center justify-center px-4 py-2 overflow-hidden font-medium text-gray-700 border-2 border-gray-300 rounded-xl shadow-lg bg-gradient-to-br from-gray-50 to-white focus:outline-none hover:border-gray-400 hover:shadow-xl transition-all whitespace-nowrap text-sm">
-      <span>東京からシンガポールへのフライトを検索</span>
+    <a href="https://cycls.com/send/{urllib.parse.quote('東京からシンガポールへのフライトを検索')}" class="group relative inline-flex items-center justify-center px-4 py-2 overflow-hidden font-medium text-gray-700 border-2 border-gray-300 rounded-xl shadow-lg bg-gradient-to-br from-gray-50 to-white focus:outline-none hover:border-gray-400 hover:shadow-xl transition-all whitespace-nowrap text-sm">
+      東京からシンガポールへのフライトを検索
     </a>
   </div>
 </div>
-
 """

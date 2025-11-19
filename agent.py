@@ -95,6 +95,5 @@ Your job is to help users find and book flights.
                     return f"<div style='padding: 20px; color: red; background: #fee; border-radius: 8px; font-family: sans-serif;'>{result.get('error')}</div>"
     
     return response_msg.content or "Hello! I'm your flight booking assistant. Where would you like to fly today?"
-    
-agent.push(prod=True)
+agent.modal(prod=True)
 
