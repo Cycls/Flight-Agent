@@ -8,10 +8,8 @@ from datetime import datetime, timedelta
 from ui import header, intro
 
 dotenv.load_dotenv()
-CYCLS_KEY_1 = os.getenv("CYCLS_KEY_1")
-CYCLS_KEY_2 = os.getenv("CYCLS_KEY_2")
 
-agent = cycls.Agent(keys=[CYCLS_KEY_1, CYCLS_KEY_2], pip=["requests", "openai", "python-dotenv"], copy=[".env"])
+cycls.api_key = os.getenv("CYCLS_API_KEY")
 
 def duffel_request(endpoint: str, method: str = "GET", payload: dict = None) -> dict:
     headers = {"Authorization": f"Bearer {os.getenv('DUFFEL_API_KEY')}", "Content-Type": "application/json", "Duffel-Version": "v2"}
@@ -36,7 +34,7 @@ def search_flights(origin: str, destination: str, departure_date: str, passenger
     flights_data = [{"offer_id": offer.get("id", ""), "airline": offer["owner"]["name"], "price": f"{offer['total_amount']} {offer['total_currency']}", "duration": offer["slices"][0]["duration"], "stops": len(offer["slices"][0].get("segments", [{}])) - 1, "departure": offer["slices"][0]["segments"][0].get("departing_at", "N/A").split("T")[1][:5] if "T" in offer["slices"][0]["segments"][0].get("departing_at", "") else "N/A", "arrival": offer["slices"][0]["segments"][-1].get("arriving_at", "N/A").split("T")[1][:5] if "T" in offer["slices"][0]["segments"][-1].get("arriving_at", "") else "N/A"} for offer in offers]
     
     return {"success": True, "flights": flights_data, "origin": origin, "destination": destination}
-@agent("flight-agent",header=header, intro=intro)
+@cycls.app("flight-agent",title = "flight agent",header=header, intro=intro,analytics=True)
 async def flight_agent(context):
     import os
     from openai import OpenAI
@@ -95,5 +93,6 @@ Your job is to help users find and book flights.
                     return f"<div style='padding: 20px; color: red; background: #fee; border-radius: 8px; font-family: sans-serif;'>{result.get('error')}</div>"
     
     return response_msg.content or "Hello! I'm your flight booking assistant. Where would you like to fly today?"
-agent.modal(prod=True)
+
+flight_agent.deploy()
 
